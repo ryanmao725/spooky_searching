@@ -10,7 +10,3 @@ multitest_thread.o: multitest_thread.c
 	@gcc -o multitest_thread.o -c multitest_thread.c
 clean:
 	@rm *.o ./searchtest
-
-
-
-
