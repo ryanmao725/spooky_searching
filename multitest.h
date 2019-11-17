@@ -4,5 +4,5 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int search(int*, int);
+int search(int*, int, int);
 #endif
