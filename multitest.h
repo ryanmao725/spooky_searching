@@ -4,5 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define SPLIT_SIZE 10
+
 int search(int*, int, int);
+
+
 #endif
