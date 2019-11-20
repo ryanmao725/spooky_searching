@@ -38,6 +38,7 @@ int main(int argc, char** argv) {
     int* ARRAY = generate(ARRAY_SIZE);
     scramble(ARRAY, ARRAY_SIZE);
     print(ARRAY, ARRAY_SIZE);
-    search(ARRAY, ARRAY_SIZE, 0);
+    int index = search(ARRAY, ARRAY_SIZE, 90);
+    printf("FOUND at Index %d -> %d\n", index, ARRAY[index]);
     return 0;
 }
