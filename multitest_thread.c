@@ -51,3 +51,6 @@ int search(int* ARRAY, int SIZE, int VALUE) {
     }
     return return_val;
 }
+char* getMode() {
+    return "thread";
+}

@@ -5,40 +5,39 @@
 //Define a macro for the size of the array.
 #define ARRAY_SIZE 1000
 
-void print(int* ARRAY, int SIZE) {
+void print(int* _array, int _size) {
     int i = 0;
-    for (i = 0; i < SIZE; i++) {
-        printf("%d, ", ARRAY[i]);
+    for (i = 0; i < _size; i++) {
+        printf("%d, ", _array[i]);
     }
 }
 
-void scramble(int* ARRAY, int SIZE) {
+void scramble(int* _array, int _size) {
     int i =0;
-    int SF = SIZE / 4 * 3;
-    printf("Scramble Factor: %d\n", SF);
+    int SF = _size / 4 * 3;
     for (i = 0; i < SF; i++) {
-        int index_1 = rand() % SIZE;
-        int index_2 = rand() % SIZE;
-        int temp = ARRAY[index_1];
-        ARRAY[index_1] = ARRAY[index_2];
-        ARRAY[index_2] = temp;
+        int index_1 = rand() % _size;
+        int index_2 = rand() % _size;
+        int temp = _array[index_1];
+        _array[index_1] = _array[index_2];
+        _array[index_2] = temp;
     }
 }
 
-int* generate(int SIZE) {
-    int* ARRAY = malloc(sizeof(int*) * SIZE);
+int* generate(int _size) {
+    int* ARRAY = malloc(sizeof(int) * _size);
     int i = 0;
-    for (i = 0; i < SIZE; i++) {
+    for (i = 0; i < _size; i++) {
         ARRAY[i] = i;
     }
     return ARRAY;
 }
 
 int main(int argc, char** argv) {
-    int* ARRAY = generate(ARRAY_SIZE);
-    scramble(ARRAY, ARRAY_SIZE);
-    //print(ARRAY, ARRAY_SIZE);
-    int index = search(ARRAY, ARRAY_SIZE, 90);
-    printf("FOUND at Index %d -> %d\n", index, ARRAY[index]);
+    int* array = generate(ARRAY_SIZE);
+    scramble(array, ARRAY_SIZE);
+    //print(array, ARRAY_SIZE);
+    int index = search(array, ARRAY_SIZE, 90);
+    printf("FOUND at Index %d -> %d using mode %s\n", index, array[index], getMode());
     return 0;
 }

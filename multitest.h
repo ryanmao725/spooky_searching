@@ -6,6 +6,7 @@
 
 #define SPLIT_SIZE 250
 
-int search(int*, int, int);
+int search(int* _array, int _size, int _value);
+char* getMode();
 
 #endif

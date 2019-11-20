@@ -28,3 +28,7 @@ int search(int* array, int size, int value) {
     }
     return -1;
 }
+
+char* getMode() {
+    return "process";
+}
