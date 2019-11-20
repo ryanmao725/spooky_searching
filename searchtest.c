@@ -3,7 +3,7 @@
 #include "multitest.h"
 
 //Define a macro for the size of the array.
-#define ARRAY_SIZE 100
+#define ARRAY_SIZE 1000
 
 void print(int* ARRAY, int SIZE) {
     int i = 0;

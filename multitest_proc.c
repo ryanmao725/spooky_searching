@@ -1,56 +1,30 @@
 #include "multitest.h"
 
-int searcher(int* array, int startIndex, int endIndex, int value) {
-    //printf("Start: %d, end: %d\n", startIndex, endIndex);
+int search(int* array, int size, int value) {
+    printf("\n");
+    int numSplits = size % SPLIT_SIZE == 0 ? size / SPLIT_SIZE : (size / SPLIT_SIZE) + 1;
+    pid_t* pid = malloc(sizeof(pid_t) * numSplits);
     int i = 0;
-    for (i = startIndex; i < endIndex; i++) {
-        if (array[i] == value) {
-            return i;
+    for (i = 0; i < numSplits; i++) {
+        if ((pid[i] = fork()) == 0) {
+            int index = 0;
+            for (index = 0; index < SPLIT_SIZE; index++) {
+                if (array[SPLIT_SIZE * i + index] == value) {
+                    exit(index + 1);
+                }
+            }
+            exit(0);
+        }
+    }
+    int stat;
+    for (i = 0; i < numSplits; i++) {
+        pid_t cpid = waitpid(pid[i], &stat, 0);
+        if (WIFEXITED(stat)) {
+            int statusCode = WEXITSTATUS(stat);
+            if (statusCode > 0) {
+                return statusCode + (SPLIT_SIZE * i) - 1;
+            }
         }
     }
     return -1;
-}
-
-int driver(int* array, int size, int start, int value) {
-    if (start < size) {
-        int fStatus = fork();
-        int childPID;
-        if (fStatus == 0) {
-            int val = searcher(array, start, start + SPLIT_SIZE, value);
-            if (val == -1) {
-                exit(0);
-            } else {
-                printf("found: %d\n", val);
-                exit(val - start + 1);
-            }
-        } else {
-            int idx = driver(array, size, start + SPLIT_SIZE, value);
-            printf("received: %d\n", idx);
-            wait(&childPID);
-            if (WIFEXITED(childPID)) {
-                int cStatusCode = WEXITSTATUS(childPID);
-                printf("Status Code: %d\n", cStatusCode);
-                //printf("Completed %d, %d, %d\n", start, startIndex, cStatusCode);
-                if (cStatusCode == 0) {
-                    if (idx > 0) {
-                        printf("returning: %d\n", idx);
-                        return idx;
-                    } else {
-                        printf("returning: %d\n", -1);
-                        return -1;
-                    }
-                } else {
-                    printf("returning: %d | status: %d | start: %d\n", cStatusCode - 1 + start, cStatusCode, start);
-                    return cStatusCode - 1 + start;
-                }
-            }
-        }
-    } else {
-        return -1;
-    }
-}
-
-int search(int* _array, int _size, int _value) {
-    printf("\n");
-    return driver(_array, _size, 0, _value);
 }
