@@ -38,7 +38,7 @@ void verificationTest(int size) {
     scramble(array, size);
     int i = 0;
     for (i = 0; i < size; i++) {
-        int index = search(array, size, array[i]);
+        int index = search(array, size, array[i], 250);
         if (i != index) {
             printf("Verification Failed: Expected Index %d, Received Index %d. Searched for %d.\n", i, index, array[i]);
             break;

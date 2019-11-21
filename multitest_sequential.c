@@ -1,6 +1,6 @@
 #include "multitest.h"
 
-int search(int* array, int size, int value) {
+int search(int* array, int size, int value, int SPLIT_SIZE) {
     int i = 0;
     for (i = 0; i < size; i++) {
         if (array[i] == value) {
