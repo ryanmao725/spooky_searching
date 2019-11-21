@@ -17,16 +17,17 @@ int search(int* array, int size, int value) {
         }
     }
     int stat;
+    int ret = -1;
     for (i = 0; i < numSplits; i++) {
         pid_t cpid = waitpid(pid[i], &stat, 0);
         if (WIFEXITED(stat)) {
             int statusCode = WEXITSTATUS(stat);
             if (statusCode > 0) {
-                return statusCode + (SPLIT_SIZE * i) - 1;
+                ret = statusCode + (SPLIT_SIZE * i) - 1;
             }
         }
     }
-    return -1;
+    return ret;
 }
 
 char* getMode() {

@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "multitest.h"
 
 int search(int* array, int size, int value) {

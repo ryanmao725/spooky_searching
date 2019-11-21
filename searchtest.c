@@ -33,11 +33,27 @@ int* generate(int _size) {
     return ARRAY;
 }
 
+void verificationTest(int size) {
+    int* array = generate(size);
+    scramble(array, size);
+    int i = 0;
+    for (i = 0; i < size; i++) {
+        int index = search(array, size, array[i]);
+        if (i != index) {
+            printf("Verification Failed: Expected Index %d, Received Index %d. Searched for %d.\n", i, index, array[i]);
+            break;
+        } else {
+            printf("Pass: %d\n", i);
+        }
+    }
+}
+
 int main(int argc, char** argv) {
-    int* array = generate(ARRAY_SIZE);
-    scramble(array, ARRAY_SIZE);
+    //int* array = generate(ARRAY_SIZE);
+    //scramble(array, ARRAY_SIZE);
     //print(array, ARRAY_SIZE);
-    int index = search(array, ARRAY_SIZE, 90);
-    printf("FOUND at Index %d -> %d using mode %s\n", index, array[index], getMode());
+    //int index = search(array, ARRAY_SIZE, 90);
+    //printf("FOUND at Index %d -> %d using mode %s\n", index, array[index], getMode());
+    verificationTest(10000);
     return 0;
 }
