@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
     printf("Test 1: Functionality Verification\n");
     printf("    --(n=1000, ns=100)-->\n");
     int* list = generate(1000);
+    //srch(list, 100, 5, 10);
     int success = test_verify(list, 1000, 100);
     if (success != 0) {
         exit(1);

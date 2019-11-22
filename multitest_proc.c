@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include "multitest.h"
 
+
 int search(int* array, int size, int value, int SPLIT_SIZE) {
     int numSplits = size % SPLIT_SIZE == 0 ? size / SPLIT_SIZE : (size / SPLIT_SIZE) + 1;
     pid_t* pid = malloc(sizeof(pid_t) * numSplits);
@@ -14,6 +15,8 @@ int search(int* array, int size, int value, int SPLIT_SIZE) {
                 }
             }
             exit(0);
+        } else {
+            continue;
         }
     }
     int stat;
