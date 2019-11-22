@@ -6,7 +6,7 @@
 // macros
 #define MAX_SPLIT_SIZE 250
 #define SIZE 1000
-#define SPLIT 10
+#define SPLIT 50
 
 // necessary imports
 #include <stdlib.h>
@@ -28,7 +28,7 @@ void print(int* _array, int _size); // Print an array
 void scramble(int* _array, int _size); // Scramble an array
 int* generate(int _size); // Create a sequential array of size
 int srch(int* _array, int _size, int _value, int _splitSize); // Wrapper to the search function, to verify the split size doesn't exceed MAX_SPLIT_SIZE
-BatchResults execute(int* _array, int _size, int _interval); // Execute a singular test unit
+BatchResults execute(int* _array, int _size, int _splitSize, int _iterations); // Execute a singular test unit
 // test function definitions
 int test_verify(int* _array, int _size, int _splitSize);
 
@@ -43,23 +43,36 @@ int main(int argc, char** argv) {
     printf("\n");
     printf("Test 1: Functionality Verification\n");
     printf("    --(n=1000, ns=100)-->\n");
-    int* list = generate(1000);
+    int* list = generate(SIZE);
     //srch(list, 100, 5, 10);
-    int success = test_verify(list, 1000, 100);
+    int success = test_verify(list, SIZE, SPLIT);
     if (success != 0) {
         exit(1);
     }
     printf("\n*******************************************************\n\n");
-    printf("Test 2: Trend Analysis\n");
+    printf("Test 2: Trend Analysis - Varying Size\n");
     printf("n\tns\ttotal\taverage\tmin\tmax\tstdev\n");
     int i = 10;
     for (i = 10; i < 1001; i += 10) {
         scramble(list, i);
-        BatchResults br = execute(list, i, 100);
+        BatchResults br = execute(list, i, SPLIT, 100);
         if (br.total < 0) {
             i -= 10;
         } else {
             printf("%d\t%d\t%li\t%li\t%li\t%li\t%li\n", i, SPLIT, br.total, br.average, br.min, br.max, br.stdev);
+        }
+    }
+    printf("\n*******************************************************\n\n");
+    printf("Test 3: Trend Analysis - Varying Splits\n");
+    printf("n\tns\ttotal\taverage\tmin\tmax\tstdev\n");
+    i = 10;
+    for (i = 10; i < 251; i += 10) {
+        scramble(list, i);
+        BatchResults br = execute(list, SIZE, i, 100);
+        if (br.total < 0) {
+            i -= 10;
+        } else {
+            printf("%d\t%d\t%li\t%li\t%li\t%li\t%li\n", SIZE, i, br.total, br.average, br.min, br.max, br.stdev);
         }
     }
     return 0;
@@ -114,7 +127,7 @@ int srch(int* _array, int _size, int _value, int _splitSize) {
 /**
  * define a singular test run
  */
-BatchResults execute(int* _array, int _size, int _interval) {
+BatchResults execute(int* _array, int _size, int _splitSize, int _iterations) {
     struct timeval tv_start, tv_end;
     gettimeofday(&tv_start, NULL);
     int i = 0;
@@ -123,12 +136,12 @@ BatchResults execute(int* _array, int _size, int _interval) {
     br.min = 10000000;
     br.max = 0;
     br.stdev = 0;
-    int* ptr = malloc(sizeof(int) * _interval);
-    for (i = 0; i < _interval; i++) {
+    int* ptr = malloc(sizeof(int) * _iterations);
+    for (i = 0; i < _iterations; i++) {
         int index = rand() % _size;
         struct timeval t_start, t_end;
         gettimeofday(&t_start, NULL);
-        srch(_array, _size, _array[index], SPLIT);
+        srch(_array, _size, _array[index], _splitSize);
         gettimeofday(&t_end, NULL);
         ptr[i] = (t_end.tv_usec - t_start.tv_usec);
         br.average += ptr[i];
@@ -139,14 +152,14 @@ BatchResults execute(int* _array, int _size, int _interval) {
             br.max = ptr[i];
         }
     }
-    br.average /= _interval;
+    br.average /= _iterations;
     gettimeofday(&tv_end, NULL);
     br.total = (tv_end.tv_usec - tv_start.tv_usec);
-    for (i = 0; i < _interval; i++) {
+    for (i = 0; i < _iterations; i++) {
         br.stdev += (ptr[i] - br.average) * (ptr[i] - br.average);
     }
-    if (_interval > 1) {
-        br.stdev /= (_interval - 1);
+    if (_iterations > 1) {
+        br.stdev /= (_iterations - 1);
         br.stdev = (long)sqrt((double)br.stdev);
     } else {
         br.stdev = 0;
