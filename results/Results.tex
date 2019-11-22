@@ -1,0 +1,94 @@
+% Global Variables
+\def \titletext {Asst 02: Spooky Searching Results}
+\def \creator {Shivan Modha and Ryan Mao}
+\def \builddate {February 08, 2018}
+\def \class {01:198:214:01}
+
+\documentclass{article}
+
+% Packages
+\usepackage[letterpaper, portrait]{geometry}
+% Configure page margins with geometry
+\geometry{left=0.5in, top=0.5in, right=0.5in, bottom=0.5in, headsep=0.2cm, footskip=0.2cm}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{tocloft}
+\usepackage[english]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+%\usepackage{gensymb}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage[makeroom]{cancel}
+\usepackage[]{units}
+
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\usepackage{latexsym,ifthen,url,rotating}
+
+\usepackage{color}
+\usepackage[md]{titlesec}
+\usepackage{float}
+\usepackage{csquotes}
+
+%\usepackage{showframe}
+\graphicspath{ {images/} }
+
+% Configure Header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\creator}
+\chead{\class}
+\rhead{\today}
+\rfoot{\thepage}
+
+% --- -----------------------------------------------------------------
+% --- Document-specific definitions.
+% --- -----------------------------------------------------------------
+\newtheorem{definition}{Definition}
+
+\newcommand{\concat}{{\,\|\,}}
+\newcommand{\bits}{\{0,1\}}
+
+\newcommand{\unif}{\mathrm{Unif}}
+\newcommand{\bin}{\mathrm{Bin}}
+\newcommand{\ber}{\mathrm{Ber}}
+\newcommand{\hgeom}{\mathrm{HGeom}}
+\newcommand{\Var}{\mathrm{Var}}
+
+\newcommand{\messagespace}{{\color{red}\mathcal{M}}}
+\newcommand{\keyspace}{{\color{red}\mathcal{K}}}
+\newcommand{\cipherspace}{{\color{red}\mathcal{C}}}
+\newcommand{\probability}{\text{Pr}}
+\newcommand{\enc}{\mathbf{\textbf{Enc}}}
+\newcommand{\gen}{\mathbf{\textbf{Gen}}}
+\newcommand{\dec}{\mathbf{\textbf{Dec}}}
+\newcommand{\xor}{\oplus}
+\newcommand  {\QED}    {\def\qedsymbol{$\square$}\qed}
+\def\F{\mathbb{F}}     % finite field
+\def\Q{\mathbb{Q}}     % rational numbers
+\def\Z{\mathbb{Z}}     % integers
+\def\N{\mathbb{N}}     % natural numbers
+\def\R{\mathbb{R}}     % real numbers
+\def\C{\mathbb{C}}     % complex numbers
+\def\E{\mathbb{E}}     % complex numbers
+\def\O{\mathbb{O}}     % complex numbers
+
+\title{\vspace{-0.5cm}\titletext}
+\date{\vspace{-5ex}}
+
+\begin{document}
+    \maketitle
+    \thispagestyle{fancy}
+    \vspace{-1.0cm}
+
+    \section*{Introduction}
+    \section*{Experimental Method}
+    \section*{Conclusion}
+\end{document}
