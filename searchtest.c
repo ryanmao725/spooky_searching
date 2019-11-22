@@ -119,9 +119,9 @@ int* generate(int _size) {
  */
 int srch(int* _array, int _size, int _value, int _splitSize) {
     if (_splitSize > MAX_SPLIT_SIZE) {
-        return search(_array, _size, _value, MAX_SPLIT_SIZE);
+        return dummy(_array, _size, _value, MAX_SPLIT_SIZE);
     } else {
-        return search(_array, _size, _value, _splitSize);
+        return dummy(_array, _size, _value, _splitSize);
     }
 }
 /**
