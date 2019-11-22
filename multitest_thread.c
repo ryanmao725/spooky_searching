@@ -5,6 +5,11 @@
 
 #include "multitest.h"
 
+static int* ARRAY = NULL;
+static int SIZE = -1;
+static int VALUE = -1;
+static int SPLIT_SIZE = -1;
+
 typedef struct thread_input {
     int value;
     int start_index;
@@ -13,38 +18,35 @@ typedef struct thread_input {
     int index;
 } thread_input;
 
-void* thread_search(void* input_arg) {
-    thread_input *arg_struct = (thread_input*)input_arg;
-    int* ARRAY = arg_struct->ARRAY;
-    int value = arg_struct->value;
-    int start_index = arg_struct->start_index;
-    int end_index = arg_struct->end_index;
+void* thread_search(void* input) {
+    int split_number = *(int*)input;
+    int start_index = split_number * SPLIT_SIZE;
+    int end_index = SIZE < (split_number + 1) * SPLIT_SIZE ? SIZE : (split_number + 1) * SPLIT_SIZE;
     int index = start_index;
-    for (index = start_index; index < end_index; index++) {
-        if (ARRAY[index] == value) {
-            ((thread_input*)input_arg)->index = index;
+    for (index; index < end_index; index++) {
+        if (ARRAY[index] == VALUE) {
+            *((int*)input) = index;
             pthread_exit((void*)-1);
         }
     }
-    ((thread_input*)input_arg)->index = -1;
+    *((int*)input) = -1;
     pthread_exit(NULL);
 }
 
 
-int search(int* ARRAY, int SIZE, int VALUE, int SPLIT_SIZE) {
+int search(int* _ARRAY, int _SIZE, int _VALUE, int _SPLIT_SIZE) {
+    //Set all variables globally.
+    ARRAY = _ARRAY;
+    SIZE = _SIZE;
+    VALUE = _VALUE;
+    SPLIT_SIZE = _SPLIT_SIZE;
     int number_of_splits = SIZE % SPLIT_SIZE == 0 ? SIZE / SPLIT_SIZE : SIZE / SPLIT_SIZE + 1;
     pthread_t threads[number_of_splits];
-    thread_input* thread_inputs[number_of_splits];
+    int thread_inputs[number_of_splits];
     int i = 0;
     for (i = 0; i < number_of_splits; i++) {
-        thread_input* arg_struct = malloc(sizeof(thread_input));
-        arg_struct->value = VALUE;
-        arg_struct->start_index = i * SPLIT_SIZE;
-        arg_struct->end_index = SIZE < (i + 1) * SPLIT_SIZE ? SIZE : (i + 1) * SPLIT_SIZE;
-        arg_struct->ARRAY = ARRAY;
-        arg_struct->index = i;
-        thread_inputs[i] = arg_struct;
-        pthread_create(&threads[i], NULL, thread_search, (void*)arg_struct);
+        thread_inputs[i] = i;
+        pthread_create(&threads[i], NULL, thread_search, (void*)&thread_inputs[i]);
     }
     i = 0;
     int return_val = -1;
@@ -52,9 +54,8 @@ int search(int* ARRAY, int SIZE, int VALUE, int SPLIT_SIZE) {
     for (i = 0; i < number_of_splits; i++) {
         pthread_join(threads[i], &return_pointer);
         if (return_pointer != NULL) {
-            return_val = thread_inputs[i]->index;
+            return_val = thread_inputs[i];
         }
-        //free(thread_inputs[i]);
     }
     return return_val;
 }
