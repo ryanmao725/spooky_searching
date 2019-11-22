@@ -4,9 +4,9 @@
  * @creation 11/21/19
  */
 // macros
-#define MAX_SPLIT_SIZE 250
+#define MAX_SPLIT_SIZE 255
 #define SIZE 1000
-#define SPLIT 250
+#define SPLIT 256
 
 // necessary imports
 #include <stdlib.h>
