@@ -6,7 +6,7 @@
 // macros
 #define MAX_SPLIT_SIZE 250
 #define SIZE 1000
-#define SPLIT 50
+#define SPLIT 250
 
 // necessary imports
 #include <stdlib.h>
@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
     printf("*******************************************************\n");
     printf("\n");
     printf("Test 1: Functionality Verification\n");
-    printf("    --(n=1000, ns=100)-->\n");
+    printf("    --(n=%d, ns=%d)-->\n", SIZE, SPLIT);
     int* list = generate(SIZE);
     //srch(list, 100, 5, 10);
     int success = test_verify(list, SIZE, SPLIT);

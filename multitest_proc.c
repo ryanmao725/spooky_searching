@@ -10,7 +10,7 @@ int search(int* array, int size, int value, int SPLIT_SIZE) {
         if ((pid[i] = fork()) == 0) {
             int index = 0;
             for (index = 0; index < SPLIT_SIZE; index++) {
-                if (array[SPLIT_SIZE * i + index] == value) {
+                if (SPLIT_SIZE * i + index < size && array[SPLIT_SIZE * i + index] == value) {
                     exit(index + 1);
                 }
             }
