@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1574483560 "c:/Users/725ma/Dev/spooky_searching/results/Results.tex" "c:/Users/725ma/Dev/spooky_searching/results/Results.pdf" "Results" 1574483563
+["pdflatex"] 1574484213 "c:/Users/725ma/Dev/spooky_searching/results/Results.tex" "c:/Users/725ma/Dev/spooky_searching/results/Results.pdf" "Results" 1574484216
   "C:/Users/725ma/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1571683023 4273544 83d3045690f45ea8fbd70035cd9b2f7e ""
   "C:/Users/725ma/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1574455479 124599 15acbafd0443db8521872a7ff18411df ""
   "C:/Users/725ma/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -175,18 +175,19 @@
   "C:/Users/725ma/AppData/Local/Programs/MiKTeX 2.9/tex/latex/units/units.sty" 1469025550 2206 65ad9fb19763b1681bea4cb389fe84f8 ""
   "C:/Users/725ma/AppData/Local/Programs/MiKTeX 2.9/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/725ma/AppData/Local/Programs/MiKTeX 2.9/tex/latex/xcolor/xcolor.sty" 1463131981 57049 34128738f682d033422ca125f82e5d62 ""
-  "Results.aux" 1574483563 678 67fc29acb20815a2cb899e4cd1e667ef "pdflatex"
-  "Results.tex" 1574483559 8131 8c61b0d39302f713d4889e226f79b92d ""
-  "c:/Users/725ma/Dev/spooky_searching/results/Results.aux" 1574483563 678 67fc29acb20815a2cb899e4cd1e667ef ""
-  "c:/Users/725ma/Dev/spooky_searching/results/Results.tex" 1574483559 8131 8c61b0d39302f713d4889e226f79b92d ""
+  "Results.aux" 1574484216 678 67fc29acb20815a2cb899e4cd1e667ef "pdflatex"
+  "Results.tex" 1574484212 9438 6aaf267c38c5d72ddf5136ab402276a0 ""
+  "c:/Users/725ma/Dev/spooky_searching/results/Results.aux" 1574484216 678 67fc29acb20815a2cb899e4cd1e667ef ""
+  "c:/Users/725ma/Dev/spooky_searching/results/Results.tex" 1574484212 9438 6aaf267c38c5d72ddf5136ab402276a0 ""
   "images/nsvt-Process.jpg" 1574478680 249286 2cdc3ef41190a861936644387504c5a3 ""
   "images/nsvt-Thread.jpg" 1574478680 255262 9fde43392de8a5ce5b54ba21eaed6889 ""
+  "images/nsvt-comparison-n100.jpg" 1574478680 222997 d6cc9fb9a99570c6ab8e82fe786b131a ""
   "svt-Processes.jpg" 1574476886 321458 e7dea87a475737da6acb3e71926aed09 ""
   "svt-Threads.jpg" 1574476886 314609 53a09459246b10320971181da5847d95 ""
   "svt-comparison-n100.jpg" 1574478680 849327 135fb9d95e07fcf3c2f22231e1f4c9a1 ""
   (generated)
-  "c:/Users/725ma/Dev/spooky_searching/results/Results.pdf"
-  "Results.log"
-  "Results.pdf"
   "c:/Users/725ma/Dev/spooky_searching/results/Results.log"
+  "Results.pdf"
+  "Results.log"
+  "c:/Users/725ma/Dev/spooky_searching/results/Results.pdf"
   "Results.aux"

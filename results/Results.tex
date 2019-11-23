@@ -147,12 +147,20 @@
                     \centering
                     \includegraphics[width=19cm]{nsvt-Thread}
                 \end{figure}
-                For \color{red}\textit{Threads}\color{black}\ there seems to be $e^{-x}$ relationship between the split size(\textbf{ns}) and the time. 
+                For \color{red}\textit{Threads}\color{black}\ there seems to be $e^{-x}$ relationship between the split size(\textbf{ns}) and the time. This is in agreement with our conclusions observed previously. We can also see that the array size has little impact compared to split size. As split size increases, the amount of time decreases drastically. 
             \pagebreak
             \subsection*{\color{blue}\textit{\underline{Process:}}\color{black}}
                 \begin{figure}[H]
                     \centering
                     \includegraphics[width=19cm]{nsvt-Process}
                 \end{figure}
+                Similarily to \color{blue}\textit{Processes}\color{black}\ there seems to be a $e^{-x}$ relationship between the split size and the time taken to complete an execution. However, the size of the array seems to have a larger factor on the time, as there is a sizeable margin between different array sizes (represented by the different graph colors).
+            \pagebreak
             \subsection*{Comparison between \textit{Sequential}, \color{red}\textit{Threads}\color{black}, \color{blue}\textit{Process}\color{black}\ vs. Time}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=19cm]{nsvt-comparison-n100}
+                \end{figure}
+                Here the size of the array was kept constant at a value of 100. Similarily when we compared the array Size vs. Time, the \color{blue}\textit{Processes}\color{black}\ took the longest, with \color{red}\textit{Threads}\color{black}\ noticeably faster, and \textit{Sequential} essentially constant.
+            \textbf{We could not seem to find a reasonable turning point for using processes over threads as threads were always faster. Also we could not find a reasonable turning point for using workers versus sequential searching.}
 \end{document}
