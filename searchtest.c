@@ -166,6 +166,9 @@ BatchResults execute(int* _array, int _size, int _splitSize, int _iterations) {
         // Calcualte the time delta
         ptr[i] = (t_end.tv_usec - t_start.tv_usec);
         // Update our stat variables
+        if (ptr[i] < 0) {
+            ptr[i] = ptr[i] + 1000000;
+        }
         br.average += ptr[i];
         if (ptr[i] < br.min) {
             br.min = ptr[i];
