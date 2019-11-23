@@ -94,7 +94,6 @@
             \begin{itemize}
                 \item Introduction
                 \item Results (Presented in Graphs)
-                \item Final Thoughts / Conclusion
             \end{itemize}
         \subsection{Objective}
             Attempt to determine:
@@ -113,16 +112,15 @@
             \subsection*{\color{red}\textit{\underline{Thread:}}\color{black}}
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[width=12cm]{svt-Threads}
+                    \includegraphics[width=19cm]{svt-Threads}
                 \end{figure}
                 For \color{red}\textit{Threads}\color{black}, each line represents one case in which the split size(\textbf{ns}) was kept constant.
                 It is quite noticeable that as the array size(\textbf{n}) increased, the time increased linearly. 
-                This allows us to conclude, with reasonable confidence that, while keeping the number of threads constant, there exists a correlation between array size and time. \newline
-                Through our graph, we also can observe a negative correlation between the split size(\textbf{ns}) and the time taken for each execution, but we will delve into that later, as we have data and other graphs available to more clearly illustrate the relationship.
+                This allows us to conclude, with reasonable confidence that, while keeping split size constant, there exists a correlation between array size and time. Through our graph, we also can observe a negative correlation between the split size(\textbf{ns}) and the time taken for each execution, but we will delve into that later, as we have data and other graphs available to more clearly illustrate the relationship.
             \subsection*{\color{blue}\textit{\underline{Process:}}\color{black}}
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[width=12cm]{svt-Processes}
+                    \includegraphics[width=19cm]{svt-Processes}
                 \end{figure}
                 For \color{blue}\textit{Processes}\color{black}, the graph is very similar to that of \color{red}\textit{Threads}\color{black}. Each line still represents one case in which the split size(\textbf{ns}) was kept constant.
                 Similarily to that of \color{red}\textit{Threads}\color{black}, the array size(\textbf{n}) does seem to have an influence on the time.
@@ -132,7 +130,7 @@
             \subsection*{Comparison between \textit{Sequential}, \color{red}\textit{Threads}\color{black}, \color{blue}\textit{Process}\color{black}\ vs. Time}
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[width=12cm]{svt-comparison-n100}
+                    \includegraphics[width=19cm]{svt-comparison-n100}
                 \end{figure}
                 This graph keeps the split size(\textbf{ns}) constant at a value of 100. 
                 Clearly, \textit{Sequential} seems to be almost constant, with the only perturbation occurring as the array size(\textbf{n}) increases to 10,000.
@@ -140,5 +138,21 @@
                 \color{blue}\textit{Processes}\color{black}\ seem to be fairly linear as well, but increase time at a much steeper rate than \color{red}\textit{Threads}\color{black}. \newline
                 Another important value that we can conclude from this graph is the turning point between using \color{red}\textit{Threads}\color{black}\ and \color{blue}\textit{Processes}\color{black}.
                 As shown on the graph, it seems that at 10 threads(\textit{This occurs when array size is 1000 on the graph}) and 1 proccess(\textit{This occurs when the array size is 0-100 on the graph}), the time required for both seem to be similar.
-    \section{Conclusion}
+        \pagebreak
+        \subsection{SPLIT SIZE(\textbf{ns}) vs. Time}
+            \subsection*{\textit{\underline{Sequential:}}}
+                For \textit{Sequential}, there is no split size. Therefore, we decided to not include a graph once again, as it would be the same.
+            \subsection*{\color{red}\textit{\underline{Thread:}}\color{black}}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=19cm]{nsvt-Thread}
+                \end{figure}
+                For \color{red}\textit{Threads}\color{black}\ there seems to be $e^{-x}$ relationship between the split size(\textbf{ns}) and the time. 
+            \pagebreak
+            \subsection*{\color{blue}\textit{\underline{Process:}}\color{black}}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=19cm]{nsvt-Process}
+                \end{figure}
+            \subsection*{Comparison between \textit{Sequential}, \color{red}\textit{Threads}\color{black}, \color{blue}\textit{Process}\color{black}\ vs. Time}
 \end{document}
