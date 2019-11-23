@@ -104,16 +104,19 @@
             \textbf{Method:} We begin this testsuite with an \textbf{n} of 1000 and \textbf{ns} of varying size (\textit{The ns in this testsuite is a predefined macro. We have run this testsuite with multiple different values of the macro.})
         \subsection{Testsuite 2: \textit{Varying n (SIZE) while keeping ns (SPLIT SIZE) constant.}}
             \textbf{Objective:} Determine the relationship between efficiency (time) and \textbf{n}. \newline
-            \textbf{Method:} We begin this testsuite by running an execution with variables \textbf{n} of 10, and an initial \textbf{ns} of the value predefined by the macro. We then begin to increase the size of \textbf{n} by 10 until we reach an \textbf{n} of 1000. Throughout this procedure, \textbf{ns} is constant. \newline
+            \textbf{Method:} We begin this testsuite by running an execution with variables \textbf{n} of 10, and an initial \textbf{ns} of the value predefined by the macro. We then begin to increase the size of \textbf{n} by 10 until we reach an \textbf{n} equal to the value in the macro. Throughout this procedure, \textbf{ns} is constant. \newline
             We will run the testsuite and observe the results for types proc, thread, and sequential.
         \subsection{Testsuite 3: \textit{Keeping n (SIZE) constant while varying ns (SPLIT SIZE).}}
             \textbf{Objective:} Determine the relationship between efficiency (time) and \textbf{ns}. \newline
-            \textbf{Method:} We begin this testsuite by running an execution with variables \textbf{n} and and initial \textbf{ns} both predefined by macros. We then run multiple executions while increasing the \textbf{ns} by 10 until a value of 250 is reached. The \textbf{n} is kept constant throughout this testsuite at 1000. \newline
+            \textbf{Method:} We begin this testsuite by running an execution with variables \textbf{n} of a value predefined by a macro, and initial \textbf{ns} of 10. We then run multiple executions while increasing the \textbf{ns} by 10 until a value of 250 is reached. The \textbf{n} is kept constant throughout this testsuite at whatever the macro value is. \newline
             We will run the testsuite and observe the results for types proc, thread and sequential.
         \subsection{Notes regarding the testsuites:}
             \begin{itemize}
-                \item Both our \textbf{n} and \textbf{ns} initial values are macro defined. We have run all testsuites multiple times at multiple different macro defined values of \textbf{ns}. \newline The \textbf{ns} value in any given run of searchtest is to be one of the following: \{10, 20, 30, 40, 50, 75, 100, 125, 150, 175, 200, 225, 250\}.
-                \item Similarily, but only for testsuite 3, the \textbf{n} value at any given run of searchtest is to be one of the following: \{100, 1000, 2000, 5000, 10000, 20000\}.
+                \item Both our \textbf{n} and \textbf{ns} initial values are macro defined. We have run all testsuites multiple times at multiple different macro defined values of \textbf{ns}. 
+                    \begin{itemize}
+                        \item The \textbf{ns} value in any given run of searchtest is to be one of the following: \{10, 20, 30, 40, 50, 75, 100, 125, 150, 175, 200, 225, 250\}.
+                        \item  Similarily, the \textbf{n} value at any given run of searchtest is to be one of the following: \{100, 1000, 2000, 5000, 10000, 20000\}.
+                    \end{itemize}
                 \item There exists a rescrambling process between each testsuite run. This is to emulate a ``new'' random list of numbers.
             \end{itemize}
     \section{Conclusion}
