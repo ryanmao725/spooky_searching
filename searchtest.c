@@ -5,7 +5,7 @@
  */
 // macros
 #define MAX_SPLIT_SIZE 255
-#define SIZE 100
+#define SIZE 1000
 #define SPLIT 100
 
 // necessary imports
