@@ -45,27 +45,27 @@ int main(int argc, char** argv) {
     printf("    --(n=%d, ns=%d)-->\n", SIZE, SPLIT);
     int* list = generate(SIZE);
     //srch(list, 100, 5, 10);
-    int success = test_verify(list, SIZE, SPLIT);
+    int success = 0; //test_verify(list, SIZE, SPLIT);
     if (success != 0) {
         exit(1);
     }
     printf("\n*******************************************************\n\n");
     printf("Test 2: Trend Analysis - Varying Size\n");
     printf("n\tns\ttotal\taverage\tmin\tmax\tstdev\n");
-    int i = 10;
-    for (i = 10; i < 1001; i += 10) {
-        scramble(list, i);
-        BatchResults br = execute(list, i, SPLIT, 100);
-        if (br.total < 0) {
-            i -= 10;
-        } else {
-            printf("%d\t%d\t%li\t%li\t%li\t%li\t%li\n", i, SPLIT, br.total, br.average, br.min, br.max, br.stdev);
-        }
-    }
+    //int i = 10;
+    //for (i = 10; i < 1001; i += 10) {
+    //    scramble(list, i);
+    //    BatchResults br = execute(list, i, SPLIT, 100);
+    //    if (br.total < 0) {
+    //        i -= 10;
+    //    } else {
+    //        printf("%d\t%d\t%li\t%li\t%li\t%li\t%li\n", i, SPLIT, br.total, br.average, br.min, br.max, br.stdev);
+    //    }
+    //}
     printf("\n*******************************************************\n\n");
     printf("Test 3: Trend Analysis - Varying Splits\n");
     printf("n\tns\ttotal\taverage\tmin\tmax\tstdev\n");
-    i = 10;
+    int i = 10;
     for (i = 10; i < 251; i += 10) {
         scramble(list, i);
         BatchResults br = execute(list, SIZE, i, 100);

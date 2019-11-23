@@ -1,0 +1,124 @@
+% Global Variables
+\def \titletext {Asst 02: Spooky Searching Testplan}
+\def \creator {Shivan Modha and Ryan Mao}
+\def \builddate {February 08, 2018}
+\def \class {01:198:214:01}
+
+\documentclass{article}
+
+% Packages
+\usepackage[letterpaper, portrait]{geometry}
+% Configure page margins with geometry
+\geometry{left=0.5in, top=0.5in, right=0.5in, bottom=0.5in, headsep=0.2cm, footskip=0.2cm}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{tocloft}
+\usepackage[english]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+%\usepackage{gensymb}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage[makeroom]{cancel}
+\usepackage[]{units}
+
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\usepackage{latexsym,ifthen,url,rotating}
+
+\usepackage{color}
+\usepackage[md]{titlesec}
+\usepackage{float}
+\usepackage{csquotes}
+
+%\usepackage{showframe}
+\graphicspath{ {images/} }
+
+% Configure Header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\creator}
+\chead{\class}
+\rhead{\today}
+\rfoot{\thepage}
+
+% --- -----------------------------------------------------------------
+% --- Document-specific definitions.
+% --- -----------------------------------------------------------------
+\newtheorem{definition}{Definition}
+
+\newcommand{\concat}{{\,\|\,}}
+\newcommand{\bits}{\{0,1\}}
+
+\newcommand{\unif}{\mathrm{Unif}}
+\newcommand{\bin}{\mathrm{Bin}}
+\newcommand{\ber}{\mathrm{Ber}}
+\newcommand{\hgeom}{\mathrm{HGeom}}
+\newcommand{\Var}{\mathrm{Var}}
+
+\newcommand{\messagespace}{{\color{red}\mathcal{M}}}
+\newcommand{\keyspace}{{\color{red}\mathcal{K}}}
+\newcommand{\cipherspace}{{\color{red}\mathcal{C}}}
+\newcommand{\probability}{\text{Pr}}
+\newcommand{\enc}{\mathbf{\textbf{Enc}}}
+\newcommand{\gen}{\mathbf{\textbf{Gen}}}
+\newcommand{\dec}{\mathbf{\textbf{Dec}}}
+\newcommand{\xor}{\oplus}
+\newcommand  {\QED}    {\def\qedsymbol{$\square$}\qed}
+\def\F{\mathbb{F}}     % finite field
+\def\Q{\mathbb{Q}}     % rational numbers
+\def\Z{\mathbb{Z}}     % integers
+\def\N{\mathbb{N}}     % natural numbers
+\def\R{\mathbb{R}}     % real numbers
+\def\C{\mathbb{C}}     % complex numbers
+\def\E{\mathbb{E}}     % complex numbers
+\def\O{\mathbb{O}}     % complex numbers
+
+\title{\vspace{-0.5cm}\titletext}
+\date{\vspace{-5ex}}
+
+\begin{document}
+    \maketitle
+    \thispagestyle{fancy}
+    \vspace{-1.0cm}
+
+    \section{Introduction}
+        \subsection{Definitions:}
+            A \textbf{testsuite} is a group of executions with varying inputs. \newline
+            An \textbf{execution} is defined as a search done - for a random value - a given amount of times and returns a batch result. \newline
+            A \textbf{batch result} is a struct containing five variables of type long. These values are the total time for the execution to run, the average time for one search, the minimum time for one search, the maximum time for one search, and the standard deviation for all searches within the execution. \newline
+            The \textbf{SIZE}, also denoted as \textbf{n}, is the size of the array containing the random values. \newline
+            The \textbf{SPLIT SIZE}, also denoted as \textbf{ns}, is the size of each split that each process or thread will run through.
+        \subsection{Procedure:} 
+            We will write functions that will perform multiple executions while varying the \textbf{SPLIT SIZE} and the \textbf{SIZE}. We then observe critical points of interest, and will discuss them later. We also have a basic sequential search execution method, which we will compare with the thread and process search methods. \newline
+            \textit{These functions will be run multiple times on different days to ensure a more accurate average time value.}
+    \section{Testsuites}
+        \subsection{Testsuite 1: \textit{Determining the integrity of our code.}}
+            \textbf{Objective:} Ensure that our code is actually working as expected (\textit{i.e. A search for a value returns the expected index}). \newline
+            \textbf{Method:} We begin this testsuite with an \textbf{n} of 1000 and \textbf{ns} of varying size (\textit{The ns in this testsuite is a predefined macro. We have run this testsuite with multiple different values of the macro.})
+        \subsection{Testsuite 2: \textit{Varying n (SIZE) while keeping ns (SPLIT SIZE) constant.}}
+            \textbf{Objective:} Determine the relationship between efficiency (time) and \textbf{n}. \newline
+            \textbf{Method:} We begin this testsuite by running an execution with variables \textbf{n} of 10, and an initial \textbf{ns} of the value predefined by the macro. We then begin to increase the size of \textbf{n} by 10 until we reach an \textbf{n} equal to the value in the macro. Throughout this procedure, \textbf{ns} is constant. \newline
+            We will run the testsuite and observe the results for types proc, thread, and sequential.
+        \subsection{Testsuite 3: \textit{Keeping n (SIZE) constant while varying ns (SPLIT SIZE).}}
+            \textbf{Objective:} Determine the relationship between efficiency (time) and \textbf{ns}. \newline
+            \textbf{Method:} We begin this testsuite by running an execution with variables \textbf{n} of a value predefined by a macro, and initial \textbf{ns} of 10. We then run multiple executions while increasing the \textbf{ns} by 10 until a value of 250 is reached. The \textbf{n} is kept constant throughout this testsuite at whatever the macro value is. \newline
+            We will run the testsuite and observe the results for types proc, thread and sequential.
+        \subsection{Notes regarding the testsuites:}
+            \begin{itemize}
+                \item Both our \textbf{n} and \textbf{ns} initial values are macro defined. We have run all testsuites multiple times at multiple different macro defined values of \textbf{ns}. 
+                    \begin{itemize}
+                        \item The \textbf{ns} value in any given run of searchtest is to be one of the following: \{10, 20, 30, 40, 50, 75, 100, 125, 150, 175, 200, 225, 250\}.
+                        \item  Similarily, the \textbf{n} value at any given run of searchtest is to be one of the following: \{100, 1000, 2000, 5000, 10000, 20000\}.
+                    \end{itemize}
+                \item There exists a rescrambling process between each testsuite run. This is to emulate a ``new'' random list of numbers.
+            \end{itemize}
+    \section{Conclusion}
+        We believe these testsuites described will allow us to develop a strong thesis on the relationship between the \textbf{SIZE}, \textbf{SPLIT SIZE}, and time for traversing an array with processes, with threads, and with neither.
+\end{document}
