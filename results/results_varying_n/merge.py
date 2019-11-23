@@ -19,9 +19,9 @@ for ns in numbers:
     pFile = pOpen.read()
     pOpen.close()
     # Parse through the individual files
-    sResults = sFile.split("*******************************************************")[3].strip().split("\n")[1:]
-    tResults = tFile.split("*******************************************************")[3].strip().split("\n")[1:]
-    pResults = pFile.split("*******************************************************")[3].strip().split("\n")[1:]
+    sResults = sFile.strip().split("\n")[1:]
+    tResults = tFile.strip().split("\n")[1:]
+    pResults = pFile.strip().split("\n")[1:]
 
     rawString = ""
     for i in range(0, len(sResults)):
