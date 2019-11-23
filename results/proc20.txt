@@ -1,4 +1,5 @@
-earch Testing Application
+*******************************************************
+Search Testing Application
         Mode: process
 *******************************************************
 
